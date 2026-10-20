@@ -120,13 +120,10 @@ body.mouse-active::before {
     color: var(--gold);
 }
 
-.logo-svg width="24" height="24">
-    <path d="M10 10 L30 10 L30 30 L10 30" stroke="var(--primary)" stroke-width="2" stroke-linecap="round"/>
-    <circle cx="15" cy="15" r="4" fill="var(--primary)"/>
-    <circle cx="25" cy="15" r="4" fill="var(--primary)"/>
-    <circle cx="15" cy="25" r="4" fill="var(--primary)"/>
-    <circle cx="25" cy="25" r="4" fill="var(--primary)"/>
-</svg>
+.logo-svg {
+    width: 24;
+    height: 24;
+}
 
 .hero-title {
     font-family: 'DM Serif Display', serif;
@@ -147,7 +144,7 @@ body.mouse-active::before {
 
 .hero-badge {
     display: inline-block;
-    background: var(--gold);
+    background: var(--primary);
     color: var(--bg);
     padding: 0.5rem 1.2rem;
     border-radius: 100px;
@@ -199,29 +196,7 @@ body.mouse-active::before {
     border-radius: 3px;
 }
 
-/* Stats Grid */
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.stat-item {
-    text-align: center;
-}
-
-.stat-number {
-    font-family: 'DM Serif Display', serif;
-    font-size: 3rem;
-    color: var(--gold);
-    margin-bottom: 0.5rem;
-}
-
-.stat-label {
-    font-size: 0.875rem;
-    color: var(--muted);
-}
+/* Stats Grid (removed - not needed for developer portfolio) */
 
 /* Skills Preview */
 .skills-preview {
@@ -447,7 +422,7 @@ body.mouse-active::before {
 
 .footer-grid {
     display: grid;
-    grid-templatecolumns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 3rem;
     margin-top: 2rem;
 }

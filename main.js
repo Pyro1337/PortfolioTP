@@ -42,12 +42,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 100);
     });
 
-    // Parallax effect for gradient background
-    function updateGradient() {
-        const blur = (fromY + (toY - fromY) * 0.1);
-        document.body.style.background = `radial-gradient(at ${fromX}px ${fromY}px, #1a1a24 0%, #0a0a0f 100%)`;
-    }
-
     // GSAP animations on scroll
     gsap.registerPlugin(ScrollTrigger);
 
@@ -94,38 +88,6 @@ document.addEventListener('DOMContentLoaded', function() {
         delay: 0.6,
         ease: 'back.out(1.7)'
     });
-
-    // Stats counter animation
-    const statsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const stats = document.querySelectorAll('.stat-number');
-                stats.forEach(stat => {
-                    const target = parseFloat(stat.dataset.target);
-                    stat.innerText = target;
-                    
-                    gsap.fromTo(stat, 
-                        { innerText: 0 }, 
-                        { 
-                            innerText: target,
-                            duration: 1.5,
-                            ease: 'power2.out',
-                            snap: { innerText: 1 },
-                            onUpdate: function() {
-                                stat.innerText = Math.floor(this.targets()[0].innerText);
-                            }
-                        }
-                    );
-                });
-                statsObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
-
-    const statsSection = document.querySelector('.stats-grid');
-    if (statsSection) {
-        statsObserver.observe(statsSection.parentElement);
-    }
 
     // Timeline stagger animation
     const timelineItems = document.querySelectorAll('.timeline-item');
@@ -229,7 +191,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Smooth reveal on load with lenis
     lenis.on('scroll', (e) => {
         // Update gradient based on scroll position
-        updateGradient();
     });
 
     // Initialize all cards hidden, reveal on scroll
@@ -265,7 +226,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('a[href^="mailto:"], a[href^="tel:"], a[href^="https"]').forEach(link => {
         link.addEventListener('click', (e) => {
             // Allow native behavior, just track
-            ga('send', 'event', 'click', 'external_link', link.getAttribute('href'));
         });
     });
 
