@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Iván Alfredo Sanchez Rojas - Desarrollador Fullstack</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
+</head>
+<body>
+    <script type="module" src="https://unpkg.com/lenis@1.0.24/dist/lenis.min.js"></script>
+    <script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://unpkg.com/scrolltrigger@3.12.2/dist/ScrollTrigger.min.js"></script>
+
+    <div id="loader">
+        <div class="loader-spinner">
+            <div class="loader-dot"></div>
+        </div>
+        <span class="loader-text">Cargando portfolio...</span>
+    </div>
+
+    <header class="header" aria-label="Inicio">
+        <div class="container">
+            <a href="#inicio" class="logo-link" aria-hidden="true">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <path d="M10 10 L30 10 L30 30 L10 30" stroke="var(--gold)" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="15" cy="15" r="4" fill="var(--gold)"/>
+                    <circle cx="25" cy="15" r="4" fill="var(--gold)"/>
+                    <circle cx="15" cy="25" r="4" fill="var(--gold)"/>
+                    <circle cx="25" cy="25" r="4" fill="var(--gold)"/>
+                </svg>
+            </a>
+            <h1 class="hero-title">Iván Alfredo<br>Sanchez Rojas</h1>
+            <p class="hero-subtitle">Desarrollador Fullstack | Paraguay</p>
+            <div class="hero-badge">3.9M+ personas aprendiendo finanzas</div>
+        </div>
+    </header>
+
+    <main class="main">
+        <section class="section" id="inicio">
+            <div class="container">
+                <div class="grid-cols-2">
+                    <div class="hero-card">
+                        <h2 class="section-subtitle">Perfil Profesional</h2>
+                        <p class="profile-text">Desarrollador de software fullstack con más de 3 años de experiencia en análisis, desarrollo y mantenimiento de aplicaciones empresariales (Genexus, Java) y desarrollo web con Python y WordPress. Experto en implementación y optimización de funcionalidades en Openbravo ERP, gestión de bases de datos relacionales (MySQL, PostgreSQL, Oracle), control de versiones (Git/GitHub) y metodologías ágiles. Enfocado en resolver incidencias, mejorar rendimiento y entregar soluciones escalables mediante pruebas, depuración y documentación técnica.</p>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-number">3+</div>
+                                <div class="stat-label">Años de experiencia</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">1</div>
+                                <div class="stat-label">Proyecto actual</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">4.15</div>
+                                <div class="stat-label">Promedio universidad</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hero-card secondary">
+                        <h2 class="section-subtitle">Habilidades Clave</h2>
+                        <div class="skills-preview">
+                            <div class="skill-pill"><span>Genexus</span></div>
+                            <div class="skill-pill"><span>Java</span></div>
+                            <div class="skill-pill"><span>Python</span></div>
+                            <div class="skill-pill"><span>WordPress</span></div>
+                            <div class="skill-pill"><span>SQL</span></div>
+                            <div class="skill-pill"><span>Git</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="experiencia">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Experiencia Laboral</h2>
+                    <span class="line-decorator"></span>
+                </div>
+                <div class="timeline-premium">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="company-name">Systems and Networks S.R.L</span>
+                            <span class="position-title">Desarrollador de Software</span>
+                            <span class="date-range">Jun 2023 - Presente</span>
+                        </div>
+                        <p class="timeline-desc">Desarrollo de aplicaciones empresariales con Genexus y Java. Implementación de funcionalidades en Openbravo ERP, corrección de incidencias, pruebas de software y trabajo con bases de datos relacionales. Capacidad para adaptarse rápidamente a nuevos entornos tecnológicos y aplicar buenas prácticas de programación.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="company-name">CIC Plata</span>
+                            <span class="position-title">Especialista en WordPress</span>
+                            <span class="date-range">Feb 2026 - Presente</span>
+                        </div>
+                        <p class="timeline-desc">Administración y optimización integral del sitio web institucional. Implementación de mejoras de rendimiento, seguridad, caché multinivel, gestión de recursos y administración de servidores.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="company-name">Anyone AI (Delaware, EE.UU.)</span>
+                            <span class="position-title">AI Trainee</span>
+                            <span class="date-range">Sept 2026 - Presente</span>
+                        </div>
+                        <p class="timeline-desc">Programas intensivos de inteligencia artificial, entrenamiento de modelos, preprocesamiento de datos y técnicas de Machine Learning / Deep Learning para resolución de casos de uso prácticos.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="company-name">Instituto Nacional de Tecnología y Normalización</span>
+                            <span class="position-title">Pasante de TI</span>
+                            <span class="date-range">Sept 2018 - Dic 2018</span>
+                        </div>
+                        <p class="timeline-desc">Desarrollo web con PHP, HTML5, CSS3 y JavaScript. Consultas SQL, gestión de bases de datos, control de versiones con Git/GitHub, soporte técnico a usuarios internos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="educacion">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Formación Académica</h2>
+                    <span class="line-decorator"></span>
+                </div>
+                <div class="education-grid">
+                    <div class="education-card">
+                        <div class="degree-badge">Licenciatura en Ciencias Informáticas</div>
+                        <h3 class="degree-title">Énfasis en Programación de Computadoras</h3>
+                        <p class="degree-institution">Universidad Nacional de Asunción - Facultad Politécnica San Lorenzo</p>
+                        <p class="degree-period">Oct 2021 - Jul 2026 | <span class="degree-gpa">Promedio: 4.15</span></p>
+                    </div>
+                    <div class="education-card">
+                        <div class="degree-badge">Bachillerato Técnico</div>
+                        <h3 class="degree-title">Informática</h3>
+                        <p class="degree-institution">Colegio Técnico Nacional Asunción</p>
+                        <p class="degree-period">Feb 2016 - Dic 2018</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="proyectos">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Proyectos y Evidencias</h2>
+                    <span class="line-decorator"></span>
+                </div>
+                <div class="projects-grid-premium">
+                    <article class="project-card">
+                        <div class="project-image">
+                            <svg width="100%" height="200" viewBox="0 0 100 100" fill="none">
+                                <rect width="100" height="100" rx="10" fill="var(--primary)"/>
+                                <text x="50" y="50" text-anchor="middle" fill="var(--gold)" font-family="DM Serif Display" font-size="15">Sistemas Empresariales</text>
+                            </svg>
+                        </div>
+                        <div class="project-body">
+                            <h3 class="project-title">Sistemas Empresariales</h3>
+                            <p class="project-desc">Desarrollo de aplicaciones con Genexus y Openbravo ERP para gestión empresarial. Módulos de inventario, facturación y reportes automatizados para pymes.</p>
+                            <div class="project-tags">
+                                <span class="tag">Genexus</span>
+                                <span class="tag">Openbravo</span>
+                                <span class="tag">ERP</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="project-card">
+                        <div class="project-image">
+                            <svg width="100%" height="200" viewBox="0 0 100 100" fill="none">
+                                <rect width="100" height="100" rx="10" fill="var(--primary)"/>
+                                <text x="50" y="50" text-anchor="middle" fill="var(--gold)" font-family="DM Serif Display" font-size="15">WordPress</text>
+                            </svg>
+                        </div>
+                        <div class="project-body">
+                            <h3 class="project-title">Optimización WordPress</h3>
+                            <p class="project-desc">Optimización y personalización de sitios web institucionales. Mejoras de rendimiento, seguridad, caché multinivel y administración de servidores.</p>
+                            <div class="project-tags">
+                                <span class="tag">WordPress</span>
+                                <span class="tag">Rendimiento</span>
+                                <span class="tag">Seguridad</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="project-card">
+                        <div class="project-image">
+                            <svg width="100%" height="200" viewBox="0 0 100 100" fill="none">
+                                <rect width="100" height="100" rx="10" fill="var(--primary)"/>
+                                <text x="50" y="50" text-anchor="middle" fill="var(--gold)" font-family="DM Serif Display" font-size="15">AI/ML</text>
+                            </svg>
+                        </div>
+                        <div class="project-body">
+                            <h3 class="project-title">Soluciones AI/ML</h3>
+                            <p class="project-desc">Entrenamiento de modelos de inteligencia artificial y deep learning. Preprocesamiento de datos y desarrollo de pipelines de ML para casos de uso prácticos.</p>
+                            <div class="project-tags">
+                                <span class="tag">Machine Learning</span>
+                                <span class="tag">Deep Learning</span>
+                                <span class="tag">IA</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="contacto">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Contacto</h3>
+                    <address>
+                        <p>📍 Fernando de la Mora, Paraguay</p>
+                        <p>📞 +595 984 650 492</p>
+                        <p>✉️ <a href="mailto:sanchezrivan2001@gmail.com">sanchezrivan2001@gmail.com</a></p>
+                    </address>
+                </div>
+                <div class="footer-col">
+                    <h3>Redes Sociales</h3>
+                    <div class="social-links">
+                        <a href="https://linkedin.com/in/ivan-alfredo-sanchez-rosas" target="_blank" rel="noopener" class="social-link">LinkedIn</a>
+                        <a href="https://github.com/ivanrs2001" target="_blank" rel="noopener" class="social-link">GitHub</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>CTA</h3>
+                    <p class="cta-text">💡 "Soluciones escalables mediante código limpio y documentación técnica"</p>
+                    <a href="mailto:inversion@adrianportfolio.com" class="btn btn-gold">Hablemos de un proyecto</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
