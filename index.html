@@ -2,952 +2,343 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Iván Alfredo Sanchez Rojas - Desarrollador Fullstack</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Iván Alfredo Sanchez Rojas — Desarrollador Fullstack. Genexus, Java, Python, WordPress y bases de datos. Fernando de la Mora, Paraguay.">
+    <title>Iván Alfredo Sanchez Rojas — Desarrollador Fullstack</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=20261020">
+    <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script defer src="main.js?v=20261020"></script>
 </head>
 <body>
-    <script type="module" src="https://unpkg.com/lenis@1.0.24/dist/lenis.min.js"></script>
 
-    <style>
-        /* ===== ROOT VARIABLES & BASE ===== */
-        :root {
-            --bg: #0d0d14;
-            --bg-subtle: #14141c;
-            --primary: #f5d0c4;
-            --gold: #e6c579;
-            --gold-soft: #ffd8a9;
-            --gold-light: #ffecd2;
-            --text: #2d2d2d;
-            --muted: #8c8c8c;
-            --accent: #1a1a24;
-            --border: rgba(245, 208, 196, 0.15);
-            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        /* ===== LENIS SMOOTH SCROLL ===== */
-        #lenis {
-            min-height: 100vh;
-        }
-
-        .lenis.lenis-smooth {
-            scroll-behavior: auto;
-        }
-
-        .lenis.lenis-allowmasstouch {
-            touch-action: none;
-        }
-
-        .lenis.lenis-stopped {
-            overflow: hidden;
-        }
-
-        .lenis.lenis-scrolling-up {
-            transform: translateY(0%);
-        }
-
-        .lenis.lenis-scrolling-down {
-            transform: translateY(0%);
-        }
-
-        /* ===== MOUSE REACTIVE BACKGROUND WITH PARTICLES ===== */
-        body {
-            overflow: hidden;
-        }
-
-        .bg-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* Grid pattern overlay */
-        .grid-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                linear-gradient(90deg, rgba(245, 208, 196, 0.03) 1px, transparent 1px),
-                linear-gradient(rgba(245, 208, 196, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            opacity: 0;
-            transition: var(--transition);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        body.mouse-active .grid-overlay {
-            opacity: 1;
-        }
-
-        /* Orbiting particles */
-        .particle {
-            position: absolute;
-            border-radius: 50%;
-            background: var(--gold);
-            opacity: 0;
-            animation: orbit 20s ease-in-out infinite;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        @keyframes orbit {
-            0%, 100% { transform: translate(0, 0) scale(0.5); opacity: 0; }
-            20%, 80% { transform: translate(100px, 50px) scale(1); opacity: 0.6; }
-            50% { transform: translate(-100px, -50px) scale(0.8); opacity: 0.4; }
-        }
-
-        /* ===== HEADER ===== */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 1.5rem 2rem;
-            background: rgba(13, 13, 20, 0.85);
-            backdrop-filter: blur(30px);
-            border-bottom: 1px solid var(--border);
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .header.scrolled {
-            background: rgba(13, 13, 20, 0.95);
-            padding: 1rem 2rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-        }
-
-        .header__logo {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            color: var(--primary);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .header__logo:hover {
-            color: var(--gold);
-        }
-
-        .header__logo svg {
-            width: 32px;
-            height: 32px;
-        }
-
-        .header__title {
-            font-family: 'DM Serif Display', serif;
-            font-size: 2.5rem;
-            font-weight: 400;
-            line-height: 1.1;
-            color: var(--primary);
-            letter-spacing: -0.02em;
-        }
-
-        .header__subtitle {
-            font-size: 0.875rem;
-            color: var(--muted);
-            margin-top: 0.25rem;
-        }
-
-        .header__actions {
-            display: flex;
-            gap: 0.75rem;
-            align-items: center;
-        }
-
-        .header__btn {
-            display: inline-block;
-            background: var(--gold);
-            color: var(--bg);
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            font-weight: 600;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .header__btn:hover {
-            background: var(--gold-light);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(230, 197, 121, 0.3);
-        }
-
-        .header__nav {
-            display: none;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .header__nav-link {
-            color: var(--muted);
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            text-decoration: none;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .header__nav-link:hover {
-            color: var(--primary);
-        }
-
-        .header__nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gold);
-            transition: var(--transition);
-        }
-
-        .header__nav-link:hover::after {
-            width: 100%;
-        }
-
-        /* ===== HERO SECTION ===== */
-        .section {
-            position: relative;
-            z-index: 10;
-            padding: 12rem 2rem 8rem;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .section__title {
-            font-family: 'DM Serif Display', serif;
-            font-size: 4rem;
-            font-weight: 400;
-            line-height: 1.05;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.03em;
-        }
-
-        .section__subtitle {
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            letter-spacing: 0.3em;
-            color: var(--gold);
-            margin-bottom: 1rem;
-        }
-
-        .section__divider {
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--gold), var(--primary));
-            margin: 1.5rem 0;
-            border-radius: 2px;
-        }
-
-        /* Hero content */
-        .hero__container {
-            position: relative;
-            z-index: 10;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .hero__badge {
-            display: inline-block;
-            background: var(--primary);
-            color: var(--bg);
-            padding: 0.5rem 1.2rem;
-            border-radius: 100px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 2rem;
-            animation: float 4s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-
-        .hero__name {
-            font-family: 'DM Serif Display', serif;
-            font-size: 5rem;
-            font-weight: 400;
-            line-height: 1.05;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            letter-spacing: -0.04em;
-        }
-
-        .hero__role {
-            font-size: 1.25rem;
-            color: var(--muted);
-            margin-bottom: 2rem;
-        }
-
-        .hero__cta {
-            display: inline-block;
-            background: transparent;
-            border: 2px solid var(--gold);
-            color: var(--gold);
-            padding: 1rem 2rem;
-            border-radius: 4px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            transition: var(--transition);
-        }
-
-        .hero__cta:hover {
-            background: var(--gold);
-            color: var(--bg);
-            box-shadow: 0 0 30px rgba(230, 197, 121, 0.4);
-        }
-
-        /* ===== PERFIL SECTION ===== */
-        .profile__grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        @media (max-width: 768px) {
-            .profile__grid {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-        }
-
-        .profile__card {
-            background: rgba(253, 246, 233, 0.08);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 2rem;
-            transition: var(--transition);
-        }
-
-        .profile__card:hover {
-            border-color: var(--gold);
-            transform: translateY(-4px);
-        }
-
-        .profile__icon {
-            width: 60px;
-            height: 60px;
-            background: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .profile__icon svg {
-            width: 28px;
-            height: 28px;
-            color: var(--bg);
-        }
-
-        .profile__title {
-            font-family: 'DM Serif Display', serif;
-            font-size: 1.75rem;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .profile__text {
-            color: var(--muted);
-            font-size: 0.9375rem;
-            line-height: 1.7;
-        }
-
-        .profile__stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
-        }
-
-        @media (max-width: 768px) {
-            .profile__stats {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        .profile__stat {
-            text-align: center;
-        }
-
-        .profile__stat-number {
-            font-family: 'DM Serif Display', serif;
-            font-size: 2.5rem;
-            color: var(--gold);
-            display: block;
-            margin-bottom: 0.25rem;
-        }
-
-        .profile__stat-label {
-            font-size: 0.75rem;
-            color: var(--muted);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        /* ===== HABILIDADES SECTION ===== */
-        .skills__grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-top: 3rem;
-        }
-
-        .skill__card {
-            background: rgba(253, 246, 233, 0.05);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 1.5rem;
-            transition: var(--transition);
-        }
-
-        .skill__card:hover {
-            border-color: var(--gold);
-            transform: translateY(-2px);
-        }
-
-        .skill__tag {
-            display: inline-block;
-            background: rgba(245, 208, 196, 0.15);
-            color: var(--primary);
-            padding: 0.25rem 0.75rem;
-            border-radius: 4px;
-            font-size: 0.625rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.5rem;
-        }
-
-        .skill__tag:hover {
-            background: var(--gold);
-            color: var(--bg);
-        }
-
-        /* ===== EXPERIENCE TIMELINE ===== */
-        .timeline {
-            position: relative;
-            padding-left: 3rem;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(var(--gold), var(--primary));
-            border-radius: 2px;
-        }
-
-        .timeline__item {
-            position: relative;
-            padding: 2rem 0;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: var(--transition);
-        }
-
-        .timeline__item.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .timeline__dot {
-            position: absolute;
-            left: -26px;
-            top: 8px;
-            width: 12px;
-            height: 12px;
-            background: var(--gold);
-            border: 3px solid var(--bg);
-            border-radius: 50%;
-        }
-
-        .timeline__company {
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 0.875rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .timeline__role {
-            font-size: 0.75rem;
-            color: var(--muted);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.25rem;
-        }
-
-        .timeline__date {
-            font-size: 0.625rem;
-            color: var(--muted);
-        }
-
-        .timeline__desc {
-            color: var(--muted);
-            font-size: 0.875rem;
-            line-height: 1.6;
-        }
-
-        /* ===== EDUCATION SECTION ===== */
-        .education__grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .education__card {
-            background: rgba(253, 246, 233, 0.05);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 2rem;
-            transition: var(--transition);
-        }
-
-        .education__card:hover {
-            border-color: var(--gold);
-        }
-
-        .education__degree {
-            display: inline-block;
-            background: var(--gold);
-            color: var(--bg);
-            padding: 0.25rem 0.75rem;
-            border-radius: 100px;
-            font-size: 0.625rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-
-        .education__degree-name {
-            font-family: 'DM Serif Display', serif;
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-bottom: 0.25rem;
-        }
-
-        .education__institution {
-            font-size: 0.875rem;
-            color: var(--muted);
-            margin-bottom: 0.25rem;
-        }
-
-        .education__period {
-            font-size: 0.75rem;
-            color: var(--muted);
-        }
-
-        /* ===== PROJECTS GRID ===== */
-        .projects__grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .project__card {
-            background: rgba(253, 246, 233, 0.03);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            overflow: hidden;
-            transition: var(--transition);
-        }
-
-        .project__card:hover {
-            border-color: var(--gold);
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .project__image {
-            height: 180px;
-            background: var(--accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project__image::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(45deg, transparent 40%, rgba(245, 208, 196, 0.1) 50%, transparent 60%);
-            transform: translateX(-100%);
-            transition: var(--transition);
-        }
-
-        .project__card:hover .project__image::after {
-            transform: translateX(100%);
-        }
-
-        .project__image svg {
-            width: 50%;
-            height: 50%;
-            color: var(--gold);
-        }
-
-        .project__body {
-            padding: 1.5rem;
-        }
-
-        .project__title {
-            font-size: 1.125rem;
-            color: var(--primary);
-            margin-bottom: 0.25rem;
-        }
-
-        .project__desc {
-            color: var(--muted);
-            font-size: 0.75rem;
-            line-height: 1.5;
-        }
-
-        .project__tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.25rem;
-            margin-top: 0.75rem;
-        }
-
-        .project__tag {
-            background: rgba(245, 208, 196, 0.1);
-            color: var(--primary);
-            padding: 0.1rem 0.35rem;
-            border-radius: 3px;
-            font-size: 0.55rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        /* ===== FOOTER ===== */
-        .footer {
-            background: var(--bg-subtle);
-            border-top: 1px solid var(--border);
-            padding: 6rem 2rem 2rem;
-        }
-
-        .footer__grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-
-        .footer__col h3 {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--gold);
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .footer__col address {
-            color: var(--muted);
-            font-size: 0.875rem;
-            line-height: 1.8;
-        }
-
-        .footer__col address a {
-            color: var(--primary);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer__col address a:hover {
-            color: var(--gold);
-        }
-
-        .footer__cta {
-            margin-top: 2rem;
-            padding: 1rem 2rem;
-            background: var(--gold);
-            color: var(--bg);
-            border-radius: 4px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            transition: var(--transition);
-        }
-
-        .footer__cta:hover {
-            background: var(--gold-light);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(230, 197, 121, 0.3);
-        }
-
-        /* ===== REDUCED MOTION ===== */
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0s !important;
-                transition-duration: 0.01s !important;
-            }
-        }
-
-        /* ===== FOCUS STATES ===== */
-        a:focus-visible, button:focus-visible {
-            outline: 2px solid var(--gold);
-            outline-offset: 2px;
-        }
-    </style>
-
-    <div class="bg-canvas">
-        <canvas id="bg-canvas" class="bg-canvas"></canvas>
+<div class="backdrop" aria-hidden="true">
+    <div class="backdrop__glow"></div>
+    <div class="backdrop__orb backdrop__orb--1"></div>
+    <div class="backdrop__orb backdrop__orb--2"></div>
+    <div class="backdrop__grid"></div>
+</div>
+
+<header class="site-header" id="siteHeader">
+    <div class="shell site-header__inner">
+        <a class="brand" href="#inicio">
+            <span class="brand__mark" aria-hidden="true">IS</span>
+            <span class="brand__name">Iván S. Rojas</span>
+        </a>
+
+        <nav class="site-nav" id="siteNav" aria-label="Navegación principal">
+            <a href="#perfil">Perfil</a>
+            <a href="#experiencia">Experiencia</a>
+            <a href="#formacion">Formación</a>
+            <a href="#proyectos">Proyectos</a>
+            <a href="#contacto" class="site-nav__cta">Contacto</a>
+        </nav>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="siteNav">
+            <span></span><span></span>
+        </button>
     </div>
+</header>
 
-    <div class="particles" id="particles"></div>
+<main>
 
-    <header class="header" aria-label="Inicio">
-        <div class="container">
-            <a href="#inicio" class="header__logo" aria-hidden="true">
-                <svg viewBox="0 0 40 40" fill="none">
-                    <path d="M10 10 L30 10 L30 30 L10 30" stroke="var(--primary)" stroke-width="2" stroke-linecap="round"/>
-                    <circle cx="15" cy="15" r="4" fill="var(--primary)"/>
-                    <circle cx="25" cy="15" r="4" fill="var(--primary)"/>
-                    <circle cx="15" cy="25" r="4" fill="var(--primary)"/>
-                    <circle cx="25" cy="25" r="4" fill="var(--primary)"/>
-                </svg>
-            </a>
-            <h1 class="header__title">Iván Alfredo<br>Sanchez Rojas</h1>
-            <div class="header__actions">
-                <p class="header__subtitle">Desarrollador Fullstack | Paraguay</p>
-                <a href="#experiencia" class="header__btn">Ver experiencia</a>
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="inicio">
+        <div class="shell hero__inner">
+            <p class="overline">Desarrollador Fullstack · Paraguay</p>
+            <h1 class="hero__title">Iván Alfredo<br><em>Sanchez Rojas</em></h1>
+            <p class="hero__lead">
+                Más de 3 años analizando, construyendo y manteniendo aplicaciones
+                empresariales con Genexus y Java, y desarrollo web con Python y WordPress.
+            </p>
+            <div class="hero__actions">
+                <a class="btn btn--solid" href="#experiencia">Ver trayectoria</a>
+                <a class="btn btn--ghost" href="#contacto">Hablemos</a>
             </div>
+
+            <dl class="hero__stats">
+                <div class="stat">
+                    <dt class="stat__value" data-count="3" data-suffix="+">3+</dt>
+                    <dd class="stat__label">Años de experiencia</dd>
+                </div>
+                <div class="stat">
+                    <dt class="stat__value" data-count="4.15" data-decimals="2">4.15</dt>
+                    <dd class="stat__label">Promedio en la UNA</dd>
+                </div>
+                <div class="stat">
+                    <dt class="stat__value" data-count="4">4</dt>
+                    <dd class="stat__label">Experiencias profesionales</dd>
+                </div>
+            </dl>
         </div>
-    </header>
+        <a class="hero__scroll" href="#perfil" aria-label="Bajar al perfil">
+            <span></span>
+        </a>
+    </section>
 
-    <main class="main">
-        <section class="section" id="inicio">
-            <div class="hero__container">
-                <div class="hero__badge">DESARROLLADOR FULLSTACK</div>
-                <h1 class="hero__name">Iván Alfredo<br>Sanchez Rojas</h1>
-                <p class="hero__role">Desarrollador de software fullstack con más de 3 años de experiencia en análisis, desarrollo y mantenimiento de aplicaciones empresariales (Genexus, Java) y desarrollo web con Python y WordPress.</p>
-                <a href="#experiencia" class="hero__cta">Conocer mi trayectoria</a>
-            </div>
-        </section>
+    <!-- ============ PERFIL ============ -->
+    <section class="section" id="perfil">
+        <div class="shell">
+            <header class="section__head">
+                <p class="overline">01 — Perfil</p>
+                <h2 class="section__title">Quién soy y<br>qué sé hacer</h2>
+            </header>
 
-        <section class="section" id="perfil">
-            <div class="container">
-                <div class="profile__grid">
-                    <div class="profile__card">
-                        <div class="profile__icon">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M20 21v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2M2 5l7 7 7-7M2 12l7 7 7-7"/>
-                            </svg>
-                        </div>
-                        <h2 class="profile__title">Desarrollador Fullstack</h2>
-                        <p class="profile__text">Desarrollador de software fullstack con más de 3 años de experiencia en análisis, desarrollo y mantenimiento de aplicaciones empresariales (Genexus, Java) y desarrollo web con Python y WordPress. Experto en implementación y optimización de funcionalidades en Openbravo ERP, gestión de bases de datos relacionales (MySQL, PostgreSQL, Oracle), control de versiones (Git/GitHub) y metodologías ágiles. Enfocado en resolver incidencias, mejorar rendimiento y entregar soluciones escalables mediante pruebas, depuración y documentación técnica.</p>
-                        <div class="profile__stats">
-                            <div class="profile__stat">
-                                <div class="profile__stat-number">3+</div>
-                                <div class="profile__stat-label">Años experiencia</div>
-                            </div>
-                            <div class="profile__stat">
-                                <div class="profile__stat-number">4.15</div>
-                                <div class="profile__stat-label">Promedio UNA</div>
-                            </div>
-                            <div class="profile__stat">
-                                <div class="profile__stat-number">1</div>
-                                <div class="profile__stat-label">Proyecto actual</div>
-                            </div>
-                        </div>
+            <div class="profile">
+                <div class="profile__bio card reveal">
+                    <p>
+                        Desarrollador de software fullstack con más de 3 años de experiencia en
+                        análisis, desarrollo y mantenimiento de aplicaciones empresariales
+                        (Genexus, Java) y desarrollo web con Python y WordPress.
+                    </p>
+                    <p>
+                        Experto en implementación y optimización de funcionalidades en Openbravo ERP,
+                        gestión de bases de datos relacionales (MySQL, PostgreSQL, Oracle), control de
+                        versiones (Git/GitHub) y metodologías ágiles. Enfocado en resolver incidencias,
+                        mejorar rendimiento y entregar soluciones escalables mediante pruebas,
+                        depuración y documentación técnica.
+                    </p>
+                    <p class="profile__note">Bilingüe español y guaraní · Inglés nivel A2 · Portugués básico</p>
+                </div>
+
+                <div class="profile__skills reveal">
+                    <div class="skill-group">
+                        <h3>Programación</h3>
+                        <ul class="chips">
+                            <li>Genexus</li><li>Java</li><li>Python</li><li>C#</li>
+                        </ul>
                     </div>
-
-                    <div class="profile__card">
-                        <div class="profile__icon">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <circle cx="12" cy="12" r="10"/>
-                                <polyline points="12 6 19 17 5 17"/>
-                            </svg>
-                        </div>
-                        <h2 class="profile__title">Habilidades Técnicas</h2>
-                        <div class="skills__grid">
-                            <div class="skill__card">
-                                <span class="skill__tag">Genexus</span>
-                            </div>
-                            <div class="skill__card">
-                                <span class="skill__tag">Java</span>
-                            </div>
-                            <div class="skill__card">
-                                <span class="skill__tag">Python</span>
-                            </div>
-                            <div class="skill__card">
-                                <span class="skill__tag">WordPress</span>
-                            </div>
-                            <div class="skill__card">
-                                <span class="skill__tag">SQL</span>
-                            </div>
-                            <div class="skill__card">
-                                <span class="skill__tag">Git</span>
-                            </div>
-                        </div>
+                    <div class="skill-group">
+                        <h3>Web</h3>
+                        <ul class="chips">
+                            <li>WordPress</li><li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>PHP</li>
+                        </ul>
+                    </div>
+                    <div class="skill-group">
+                        <h3>Bases de datos</h3>
+                        <ul class="chips">
+                            <li>MySQL</li><li>PostgreSQL</li><li>Oracle</li><li>SQL Server</li><li>DBeaver</li>
+                        </ul>
+                    </div>
+                    <div class="skill-group">
+                        <h3>Herramientas</h3>
+                        <ul class="chips">
+                            <li>Git / GitHub</li><li>GitLab</li><li>Jira</li><li>Bitrix</li><li>Slack</li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="section" id="experiencia">
-            <div class="container">
-                <h2 class="section__title">Experiencia Laboral</h2>
-                <p class="section__subtitle">Trayectoria profesional</p>
-                <div class="section__divider"></div>
-            </div>
+    <!-- ============ EXPERIENCIA ============ -->
+    <section class="section section--alt" id="experiencia">
+        <div class="shell">
+            <header class="section__head">
+                <p class="overline">02 — Experiencia</p>
+                <h2 class="section__title">Trayectoria<br>profesional</h2>
+            </header>
 
-            <div class="timeline">
-                <div class="timeline__item">
-                    <div class="timeline__dot"></div>
-                    <div class="timeline__content">
+            <ol class="timeline">
+                <li class="timeline__item reveal">
+                    <div class="timeline__marker" aria-hidden="true"></div>
+                    <div class="timeline__meta">
                         <span class="timeline__company">Systems and Networks S.R.L</span>
-                        <span class="timeline__role">Desarrollador de Software</span>
-                        <span class="timeline__date">Jun 2023 - Presente</span>
+                        <span class="timeline__date">Jun 2023 — Presente</span>
                     </div>
-                    <p class="timeline__desc">Desarrollo de aplicaciones empresariales con Genexus y Java. Implementación de funcionalidades en Openbravo ERP, corrección de incidencias, pruebas de software y trabajo con bases de datos relacionales. Capacidad para adaptarse rápidamente a nuevos entornos tecnológicos y aplicar buenas prácticas de programación para la entrega de soluciones eficientes y escalables.</p>
-                </div>
+                    <h3 class="timeline__role">Desarrollador de Software</h3>
+                    <p class="timeline__desc">
+                        Análisis, desarrollo y mantenimiento de aplicaciones empresariales con
+                        Genexus y Java. Implementación de funcionalidades en Openbravo ERP,
+                        corrección de incidencias, pruebas de software y trabajo con bases de
+                        datos relacionales, aplicando buenas prácticas para entregar soluciones
+                        eficientes y escalables.
+                    </p>
+                    <ul class="chips chips--sm">
+                        <li>Genexus</li><li>Java</li><li>Openbravo ERP</li><li>SQL</li>
+                    </ul>
+                </li>
 
-                <div class="timeline__item">
-                    <div class="timeline__dot"></div>
-                    <div class="timeline__content">
-                        <span class="timeline__company">CIC Plata</span>
-                        <span class="timeline__role">Especialista en WordPress</span>
-                        <span class="timeline__date">Feb 2026 - Presente</span>
+                <li class="timeline__item reveal">
+                    <div class="timeline__marker" aria-hidden="true"></div>
+                    <div class="timeline__meta">
+                        <span class="timeline__company">CIC Plata — Buenos Aires, Argentina</span>
+                        <span class="timeline__date">Feb 2026 — Presente</span>
                     </div>
-                    <p class="timeline__desc">Administración y optimización integral del sitio web institucional. Implementación de mejoras de rendimiento, seguridad, caché multinivel, gestión de recursos y administración de servidores. Mantenimiento semestral completo, actualización de componentes y optimización de bases de datos.</p>
-                </div>
+                    <h3 class="timeline__role">Especialista en WordPress</h3>
+                    <p class="timeline__desc">
+                        Administración y optimización integral del sitio web institucional:
+                        mejoras de rendimiento, seguridad, caché multinivel, gestión de recursos
+                        y administración de servidores. Mantenimiento semestral completo,
+                        actualización de componentes y optimización de bases de datos.
+                    </p>
+                    <ul class="chips chips--sm">
+                        <li>WordPress</li><li>Rendimiento</li><li>Seguridad</li><li>Servidores</li>
+                    </ul>
+                </li>
 
-                <div class="timeline__item">
-                    <div class="timeline__dot"></div>
-                    <div class="timeline__content">
-                        <span class="timeline__company">Anyone AI (Delaware, EE.UU.)</span>
-                        <span class="timeline__role">AI Trainee</span>
-                        <span class="timeline__date">Sept 2026 - Presente</span>
+                <li class="timeline__item reveal">
+                    <div class="timeline__marker" aria-hidden="true"></div>
+                    <div class="timeline__meta">
+                        <span class="timeline__company">Anyone AI — Delaware, EE.UU.</span>
+                        <span class="timeline__date">Sept 2026 — Presente</span>
                     </div>
-                    <p class="timeline__desc">Participación en programas intensivos de inteligencia artificial, entrenamiento de modelos, preprocesamiento de datos y aplicación de técnicas de Machine Learning / Deep Learning para resolución de casos de uso prácticos.</p>
-                </div>
+                    <h3 class="timeline__role">AI Trainee</h3>
+                    <p class="timeline__desc">
+                        Participación en programas intensivos de inteligencia artificial:
+                        entrenamiento de modelos, preprocesamiento de datos y aplicación de
+                        técnicas de Machine Learning y Deep Learning para resolución de casos
+                        de uso prácticos.
+                    </p>
+                    <ul class="chips chips--sm">
+                        <li>Machine Learning</li><li>Deep Learning</li><li>Preprocesamiento</li>
+                    </ul>
+                </li>
 
-                <div class="timeline__item">
-                    <div class="timeline__dot"></div>
-                    <div class="timeline__content">
+                <li class="timeline__item reveal">
+                    <div class="timeline__marker" aria-hidden="true"></div>
+                    <div class="timeline__meta">
                         <span class="timeline__company">Instituto Nacional de Tecnología y Normalización</span>
-                        <span class="timeline__role">Pasante de TI</span>
-                        <span class="timeline__date">Sept 2018 - Dic 2018</span>
+                        <span class="timeline__date">Sept 2018 — Dic 2018</span>
                     </div>
-                    <p class="timeline__desc">Desarrollo web con PHP, HTML5, CSS3 y JavaScript. Consultas SQL, gestión de bases de datos, control de versiones con Git/GitHub, soporte técnico a usuarios internos, colaboración en resolución de incidencias y mantenimiento de equipos.</p>
-                </div>
+                    <h3 class="timeline__role">Pasante de TI — Hardware y Software</h3>
+                    <p class="timeline__desc">
+                        Desarrollo web con PHP, HTML5, CSS3 y JavaScript; consultas SQL y
+                        gestión de bases de datos con DBeaver; control de versiones con Git y
+                        GitHub; seguimiento de tareas en Jira; soporte técnico a usuarios
+                        internos y documentación de procesos.
+                    </p>
+                    <ul class="chips chips--sm">
+                        <li>PHP</li><li>HTML/CSS/JS</li><li>Git</li><li>Jira</li><li>Soporte</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- ============ FORMACIÓN ============ -->
+    <section class="section" id="formacion">
+        <div class="shell">
+            <header class="section__head">
+                <p class="overline">03 — Formación</p>
+                <h2 class="section__title">Educación y<br>certificaciones</h2>
+            </header>
+
+            <div class="edu-grid">
+                <article class="card edu-card reveal">
+                    <span class="edu-card__tag">En curso · 2021—2026</span>
+                    <h3 class="edu-card__title">Licenciatura en Ciencias Informáticas</h3>
+                    <p class="edu-card__sub">Énfasis en Programación de Computadoras</p>
+                    <p class="edu-card__place">Universidad Nacional de Asunción — Facultad Politécnica, San Lorenzo</p>
+                    <p class="edu-card__gpa">Promedio: <strong>4.15</strong></p>
+                </article>
+
+                <article class="card edu-card reveal">
+                    <span class="edu-card__tag">2016 — 2018</span>
+                    <h3 class="edu-card__title">Bachillerato Técnico en Informática</h3>
+                    <p class="edu-card__place">Colegio Técnico Nacional, Asunción</p>
+                </article>
             </div>
-        </section>
 
-        <section class="section" id="educacion">
-            <div class="container">
-                <h2 class="section__title">Formación Académica</h2>
-                <p class="section__subtitle">Preparación académica</p>
-                <div class="section__divider"></div>
-            </div>
-
-            <div class="education__grid">
-                <div class="education__card">
-                    <div class="education__degree">Licenciatura</div>
-                    <h3 class="education__degree-name">Licenciatura en Ciencias Informáticas</h3>
-                    <p class="education__institution">Universidad Nacional de Asunción - Facultad Politécnica San Lorenzo</p>
-                    <p class="education__period">Oct 2021 - Jul 2026 | <span>Promedio: 4.15</span></p>
-                </div>
-
-                <div class="education__card">
-                    <div class="education__degree">Bachillerato</div>
-                    <h3 class="education__degree-name">Bachillerato Técnico en Informática</h3>
-                    <p class="education__institution">Colegio Técnico Nacional Asunción</p>
-                    <p class="education__period">Feb 2016 - Dic 2018</p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer" id="contacto">
-        <div class="container">
-            <div class="footer__grid">
-                <div class="footer__col">
-                    <h3>Contacto</h3>
-                    <address>
-                        <p>📍 Fernando de la Mora, Paraguay</p>
-                        <p>📞 +595 984 650 492</p>
-                        <p>✉️ <a href="mailto:sanchezrivan2001@gmail.com">sanchezrivan2001@gmail.com</a></p>
-                    </address>
-                </div>
-
-                <div class="footer__col">
-                    <h3>Redes Sociales</h3>
-                    <div style="display: gap: 0.75rem;">
-                        <a href="https://linkedin.com/in/ivan-alfredo-sanchez-rosas" target="_blank" rel="noopener" class="footer__link">LinkedIn</a>
-                        <a href="https://github.com/ivanrs2001" target="_blank" rel="noopener" class="footer__link">GitHub</a>
-                    </div>
-                </div>
-
-                <div class="footer__col">
-                    <a href="mailto:sanchezrivan2001@gmail.com" class="footer__cta">Hablemos de un proyecto</a>
-                </div>
+            <div class="certs reveal">
+                <h3 class="certs__title">Certificaciones</h3>
+                <ul class="certs__list">
+                    <li><span class="certs__date">Abr 2024</span> Curso Profesional de Python — Código Facilito</li>
+                    <li><span class="certs__date">May 2024</span> Bootcamp de Java Profesional — POO</li>
+                    <li><span class="certs__date">Jun 2024</span> Hackatón IA</li>
+                    <li><span class="certs__date">May 2025</span> ABBYY FlexiCapture 12 Basic</li>
+                    <li><span class="certs__date">May 2025</span> Taller de Economía y Finanzas Internacionales — BCP</li>
+                </ul>
             </div>
         </div>
-    </footer>
+    </section>
 
-    <script type="module" src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script type="module" src="main.js"></script>
+    <!-- ============ PROYECTOS ============ -->
+    <section class="section section--alt" id="proyectos">
+        <div class="shell">
+            <header class="section__head">
+                <p class="overline">04 — Evidencias</p>
+                <h2 class="section__title">Proyectos y<br>áreas de trabajo</h2>
+            </header>
+
+            <div class="proj-grid">
+                <article class="card proj-card reveal">
+                    <div class="proj-card__num" aria-hidden="true">01</div>
+                    <h3 class="proj-card__title">Aplicaciones empresariales</h3>
+                    <p class="proj-card__desc">
+                        Desarrollo y mantenimiento de aplicaciones empresariales con Genexus y
+                        Java sobre Openbravo ERP: módulos de gestión, corrección de incidencias
+                        y pruebas de software para clientes productivos.
+                    </p>
+                    <ul class="chips chips--sm">
+                        <li>Genexus</li><li>Java</li><li>Openbravo</li>
+                    </ul>
+                </article>
+
+                <article class="card proj-card reveal">
+                    <div class="proj-card__num" aria-hidden="true">02</div>
+                    <h3 class="proj-card__title">Optimización web institucional</h3>
+                    <p class="proj-card__desc">
+                        Administración integral de sitio institucional en WordPress: rendimiento,
+                        seguridad, caché multinivel, optimización de bases de datos y
+                        administración de servidores con mantenimiento continuo.
+                    </p>
+                    <ul class="chips chips--sm">
+                        <li>WordPress</li><li>Rendimiento</li><li>Backups</li>
+                    </ul>
+                </article>
+
+                <article class="card proj-card reveal">
+                    <div class="proj-card__num" aria-hidden="true">03</div>
+                    <h3 class="proj-card__title">Inteligencia artificial</h3>
+                    <p class="proj-card__desc">
+                        Entrenamiento de modelos y preprocesamiento de datos aplicando técnicas
+                        de Machine Learning y Deep Learning a casos de uso prácticos dentro del
+                        programa AI Trainee de Anyone AI.
+                    </p>
+                    <ul class="chips chips--sm">
+                        <li>ML</li><li>Deep Learning</li><li>Python</li>
+                    </ul>
+                </article>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- ============ CONTACTO ============ -->
+<footer class="site-footer" id="contacto">
+    <div class="shell">
+        <header class="section__head">
+            <p class="overline">05 — Contacto</p>
+            <h2 class="section__title">¿Trabajamos<br>juntos?</h2>
+        </header>
+
+        <div class="contact">
+            <a class="contact__item reveal" href="mailto:sanchezrivan2001@gmail.com">
+                <span class="contact__label">Email</span>
+                <span class="contact__value">sanchezrivan2001@gmail.com</span>
+            </a>
+            <a class="contact__item reveal" href="tel:+595984650492">
+                <span class="contact__label">Teléfono</span>
+                <span class="contact__value">+595 984 650 492</span>
+            </a>
+            <div class="contact__item reveal">
+                <span class="contact__label">Ubicación</span>
+                <span class="contact__value">Fernando de la Mora, Paraguay</span>
+            </div>
+        </div>
+
+        <div class="site-footer__bottom">
+            <p>© 2026 Iván Alfredo Sanchez Rojas · Desarrollador Fullstack</p>
+            <a class="site-footer__cv" href="./Iv%C3%A1n_Alfredo_Sanchez_Rojas_CV_ACTUALIZADO.md">Ver CV completo</a>
+        </div>
+    </div>
+</footer>
+
 </body>
 </html>
